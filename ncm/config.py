@@ -7,6 +7,7 @@ CONFIG_FILE_PATH = os.path.join(CONFIG_MAIN_PATH, 'config.ini')
 DEFAULT_DOWNLOAD_PATH = os.path.join(CONFIG_MAIN_PATH, 'download')
 SONG_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'song')
 PLAYLIST_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'playlist')
+ALBUM_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'album')
 
 def load_config():
     if not os.path.exists(CONFIG_MAIN_PATH):
@@ -17,10 +18,12 @@ def load_config():
     global BIT_RATE
     global SONG_DOWNLOAD_PATH
     global PLAYLIST_DOWNLOAD_PATH
+    global ALBUM_DOWNLOAD_PATH
 
     BIT_RATE = config.get('ncm', 'br')
     SONG_DOWNLOAD_PATH = config.get('ncm', 'song_down_path')
     PLAYLIST_DOWNLOAD_PATH = config.get('ncm', 'playlist_down_path')
+    ALBUM_DOWNLOAD_PATH = config.get('ncm', 'album_down_path')
 
 def init_config_file(path):
     os.makedirs(path)
@@ -30,8 +33,10 @@ def init_config_file(path):
                      'br=320000\n'\
                      ';默认单曲下载路径\n'\
                      'song_down_path=' + DEFAULT_DOWNLOAD_PATH + '\song\n'\
-                     ';默认歌单下载路\n'\
+                     ';默认歌单下载路径\n'\
                      'playlist_down_path=' + DEFAULT_DOWNLOAD_PATH + '\playlist\n'\
+                     ';默认专辑下载路径\n'\
+                     'album_down_path=' + DEFAULT_DOWNLOAD_PATH + '\\album\n'\
 
     with open(CONFIG_FILE_PATH, 'w') as f:
         f.write(default_config)

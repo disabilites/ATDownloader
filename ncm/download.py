@@ -1,14 +1,17 @@
+from bs4 import BeautifulSoup
 from ncm.constants import api_url
 from ncm.constants import re_strList
 from ncm.constants import err_strList
 from ncm.constants import get_song_params
 from ncm.constants import get_detail_params
 from ncm.constants import get_playlist_params
+from ncm.constants import get_album_params
 from ncm.machining import add_metadata_to_song
 
 import requests
 import json
 import os
+import re
 
 def get_song_info(song_id):
     songinfoDict = {}
@@ -30,7 +33,7 @@ def get_song_info(song_id):
 def song_download(songinfoDict, down_path):
     if not os.path.exists(down_path):
         os.makedirs(down_path)
-        print('ofk')
+        print('目录创建成功！')
     name = songinfoDict['artist'] + ' - ' + songinfoDict['name']
     for errstr in name:
         if errstr in err_strList:
@@ -45,8 +48,23 @@ def song_download(songinfoDict, down_path):
     add_metadata_to_song(down_path, songinfoDict)
 
 def playlist_download(playlist_id, path):
+    playlist_url = 'https://music.163.com/playlist?id=' + playlist_id
+    html = requests.get(playlist_url).text
+    soup = BeautifulSoup(html, 'lxml')
+    playlistname = re.match('(.*?) - 歌单 - 网易云音乐', soup.title.string).group(1)
+    path = path + '\\' + playlistname
     playlist = requests.get(api_url, get_playlist_params(playlist_id)).text
     playlist_json = json.loads(playlist)
     length = len(playlist_json['playlist']['tracks'])
     for i in range(0, length):
         song_download(get_song_info(playlist_json['playlist']['tracks'][i]['id']), path)
+
+def album_download(album_id, path):
+    album = requests.get(api_url, get_album_params(album_id)).text
+    album_json = json.loads(album)
+    albumname = album_json['songs'][0]['al']['name']
+    path = path + '\\' + albumname
+    length = len(album_json['songs'])
+    for i in range(0, length):
+        song_download(get_song_info(album_json['songs'][i]['id']), path)
+

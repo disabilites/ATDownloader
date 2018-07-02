@@ -15,3 +15,7 @@ def get_detail_params(song_id):
 def get_playlist_params(playlist_id):
     playlist_params = {'type': 'playlist', 'id': playlist_id}
     return playlist_params
+
+def get_album_params(album_id):
+    album_params = {'type': 'album', 'id': album_id}
+    return album_params

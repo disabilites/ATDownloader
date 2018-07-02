@@ -7,6 +7,8 @@ setup(
     install_requires=[
         'requests>=2.18.4',
         'mutagen>=1.40.0',
+        'lxml>=4.1.1',
+        'beautifulsoup4>=4.6.0',
     ],
     entry_points={
     'console_scripts': [

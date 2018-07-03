@@ -2,7 +2,6 @@
 ***
 基于python3.0的命令提示行下载器，目前仅支持下载网易云音乐的相关内容，后续还会继续拓展功能。
 ***
-## 网易云音乐
 ### 安装
 进入setup.py目录，运行：  
 
@@ -21,6 +20,8 @@ Finished processing dependencies for ATDownloader==1.0
 ```
 
 默认会在C盘的用户目录下生产.ATDownloader和配置文件config.ini
+
+## 网易云音乐
 
 ### 相关命名
 ncm -h 查看帮助 

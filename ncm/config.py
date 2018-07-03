@@ -4,7 +4,7 @@ import os
 BIT_RATE = '320000'
 CONFIG_MAIN_PATH = os.path.join(os.path.expanduser('~'), '.ATDownloader')
 CONFIG_FILE_PATH = os.path.join(CONFIG_MAIN_PATH, 'config.ini')
-DEFAULT_DOWNLOAD_PATH = os.path.join(CONFIG_MAIN_PATH, 'download')
+DEFAULT_DOWNLOAD_PATH = os.path.join(CONFIG_MAIN_PATH, 'ncm')
 SONG_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'song')
 PLAYLIST_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'playlist')
 ALBUM_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'album')
@@ -38,5 +38,5 @@ def init_config_file(path):
                      ';默认专辑下载路径\n'\
                      'album_down_path=' + DEFAULT_DOWNLOAD_PATH + '\\album\n'\
 
-    with open(CONFIG_FILE_PATH, 'w') as f:
+    with open(CONFIG_FILE_PATH, 'a') as f:
         f.write(default_config)

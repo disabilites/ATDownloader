@@ -39,7 +39,7 @@ def song_download(songinfoDict, down_path):
         if errstr in err_strList:
             index = err_strList.index(errstr)
             name = name.replace(errstr, re_strList[index])
-    down_path = down_path + '\\' + name + '.mp3'
+    down_path = os.path.join(down_path, name + '.mp3')
 
     song_data = requests.get(songinfoDict['url']).content
     with open(down_path, 'wb') as f:

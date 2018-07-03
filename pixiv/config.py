@@ -9,9 +9,13 @@ IMG_DOWNLOAD_PATH = os.path.join(DEFAULT_DOWNLOAD_PATH, 'img')
 def load_config():
     if not os.path.exists(CONFIG_MAIN_PATH):
         os.makedirs(CONFIG_MAIN_PATH)
-    else:
-        init_config_file()
+
     config = ConfigParser()
+    config.read(CONFIG_FILE_PATH)
+
+    if 'pixiv' not in config.sections():
+        init_config_file()
+
     config.read(CONFIG_FILE_PATH)
 
     global IMG_DOWNLOAD_PATH
@@ -26,3 +30,6 @@ def init_config_file():
 
     with open(CONFIG_FILE_PATH, 'a') as f:
         f.write(default_config)
+
+if __name__ == '__main__':
+    load_config()

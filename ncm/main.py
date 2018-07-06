@@ -7,9 +7,9 @@ load_config()
 
 def main():
     parser = argparse.ArgumentParser(description='Welcome to ATDownloader!')
-    parser.add_argument('-s', metavar='song_id', dest='song_id', help='song_id', type=str)
-    parser.add_argument('-p', metavar='playlist_id', dest='playlist_id', help='playlist_id', type=str)
-    parser.add_argument('-a', metavar='album_id', dest='album_id', help='album_id', type=str)
+    parser.add_argument('-s', metavar='song_id', dest='song_id', help='歌曲ID', type=str)
+    parser.add_argument('-p', metavar='playlist_id', dest='playlist_id', help='歌单ID', type=str)
+    parser.add_argument('-a', metavar='album_id', dest='album_id', help='专辑ID', type=str)
     args = parser.parse_args()
     try:
         if args.song_id:

@@ -1,12 +1,6 @@
 from bs4 import BeautifulSoup
-from ncm.constants import api_url
-from ncm.constants import re_strList
-from ncm.constants import err_strList
-from ncm.constants import get_song_params
-from ncm.constants import get_detail_params
-from ncm.constants import get_playlist_params
-from ncm.constants import get_album_params
 from ncm.machining import add_metadata_to_song
+from ncm.constants import *
 
 import requests
 import json
@@ -55,16 +49,16 @@ def playlist_download(playlist_id, path):
     path = path + '\\' + playlistname
     playlist = requests.get(api_url, get_playlist_params(playlist_id)).text
     playlist_json = json.loads(playlist)
-    length = len(playlist_json['playlist']['tracks'])
-    for i in range(0, length):
-        song_download(get_song_info(playlist_json['playlist']['tracks'][i]['id']), path)
+    playlist_len = len(playlist_json['playlist']['tracks'])
+    for index in range(0, playlist_len):
+        song_download(get_song_info(playlist_json['playlist']['tracks'][index]['id']), path)
 
 def album_download(album_id, path):
     album = requests.get(api_url, get_album_params(album_id)).text
     album_json = json.loads(album)
     albumname = album_json['songs'][0]['al']['name']
     path = path + '\\' + albumname
-    length = len(album_json['songs'])
-    for i in range(0, length):
-        song_download(get_song_info(album_json['songs'][i]['id']), path)
+    album_len = len(album_json['songs'])
+    for index in range(0, album_len):
+        song_download(get_song_info(album_json['songs'][index]['id']), path)
 

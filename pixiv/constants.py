@@ -10,3 +10,7 @@ def get_referer(illust_id):
 def get_illust_params(illust_id):
     illust_params = {'type': 'illust', 'id': illust_id}
     return illust_params
+
+def get_rank_params(mode, page, date):
+    rank_params = {'type': 'rank', 'mode': mode, 'page': page, 'date': date}
+    return rank_params

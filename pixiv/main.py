@@ -3,7 +3,7 @@ from pixiv.config import *
 
 import argparse
 
-load_config()
+#load_config()
 
 def main():
     parser = argparse.ArgumentParser(description='Welcome to ATDownloader!')
@@ -14,6 +14,8 @@ def main():
         if args.illust_id:
             download_img_original(args.illust_id, IMG_DOWNLOAD_PATH)
         if args.rank:
+            if args.rank[0] == '_':
+                args.rank[0] = 'day'
             if args.rank[1] == '_':
                 args.rank[1] == '1'
             if args.rank[2] == '_':

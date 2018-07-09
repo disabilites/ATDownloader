@@ -33,13 +33,20 @@ def song_download(songinfoDict, down_path):
         if errstr in err_strList:
             index = err_strList.index(errstr)
             name = name.replace(errstr, re_strList[index])
-    down_path = os.path.join(down_path, name + '.mp3')
 
-    song_data = requests.get(songinfoDict['url']).content
-    with open(down_path, 'wb') as f:
-        f.write(song_data)
-        print('下载完成')
-    add_metadata_to_song(down_path, songinfoDict)
+    down_path = os.path.join(down_path, name + '.mp3')
+    if not os.path.exists(down_path):
+        song_data = requests.get(songinfoDict['url'], stream=True)
+        length = int(song_data.headers.get('Content-Length'))
+        progress = ProgressBar(down_path, length)
+        with open(down_path, 'wb') as f:
+            for buffer in song_data.iter_content(chunk_size=1024):
+                if buffer:
+                    f.write(buffer)
+                    progress.refresh(len(buffer))
+        add_metadata_to_song(down_path, songinfoDict)
+    else:
+        print(name + '已存在！')
 
 def playlist_download(playlist_id, path):
     playlist_url = 'https://music.163.com/playlist?id=' + playlist_id
@@ -62,3 +69,25 @@ def album_download(album_id, path):
     for index in range(0, album_len):
         song_download(get_song_info(album_json['songs'][index]['id']), path)
 
+class ProgressBar(object):
+
+    def __init__(self, file_name, total):
+        super().__init__()
+        self.file_name = file_name
+        self.count = 0
+        self.prev_count = 0
+        self.total = total
+        self.end_str = '\r'
+
+    def __get_info(self):
+        return 'Progress: {:6.2f}%, {:8.2f}KB, [{:.30}]'\
+            .format(self.count/self.total*100, self.total/1024, self.file_name)
+
+    def refresh(self, count):
+        self.count += count
+        if (self.count - self.prev_count) > 10240:
+            self.prev_count = self.count
+            print(self.__get_info(), end=self.end_str)
+        if self.count >= self.total:
+            self.end_str = '\n'
+            print(self.__get_info(), end=self.end_str)

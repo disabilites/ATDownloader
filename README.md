@@ -28,7 +28,7 @@ Finished processing dependencies for ATDownloader==1.0
 
 2018-07-06 增加Pixiv排行榜下载功能；修改部分代码  
 
-2018-07-09 增加网易云音乐下载显示进度条功能；如果下载路径中存在相同名字歌曲，则不下载
+2018-07-09 增加网易云音乐下载显示进度条功能；多首歌曲下载；跳过已下载歌曲
 
 ***
 
@@ -46,21 +46,26 @@ Welcome to ATDownloader!
 optional arguments:
   -h, --help      show this help message and exit
   -s song_id      歌曲ID
+  -ss song_ids    多首歌曲ID
   -p playlist_id  歌单ID
   -a album_id     专辑ID
 ```
 
 ncm -s  下载歌曲  
 
-`ncm -s 如：494174528（歌曲ID）`
+`ncm -s 494174528（歌曲ID）`
+
+ncm -ss 下载多首歌曲
+
+`ncm -ss 557579157 468490592 （多首歌曲ID，中间用空格隔开）`
 
 ncm -p  下载歌单  
 
-`ncm -p 如：2264487099（歌单ID）`
+`ncm -p 2264487099（歌单ID）`
 
 ncm -a  下载专辑 
 
-`ncm -a 如：38225036（专辑ID）`
+`ncm -a 38225036（专辑ID）`
 
 ### 注意
 

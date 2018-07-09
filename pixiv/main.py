@@ -3,7 +3,7 @@ from pixiv.config import *
 
 import argparse
 
-#load_config()
+load_config()
 
 def main():
     parser = argparse.ArgumentParser(description='Welcome to ATDownloader!')

@@ -27,7 +27,7 @@ def get_song_info(song_id):
 def song_download(songinfoDict, down_path):
     if not os.path.exists(down_path):
         os.makedirs(down_path)
-        print('目录创建成功！')
+        print("目录创建成功！")
     name = songinfoDict['artist'] + ' - ' + songinfoDict['name']
     for errstr in name:
         if errstr in err_strList:
@@ -46,13 +46,13 @@ def song_download(songinfoDict, down_path):
                     progress.refresh(len(buffer))
         add_metadata_to_song(down_path, songinfoDict)
     else:
-        print(name + '已存在！')
+        print(name + "已存在！")
 
 def playlist_download(playlist_id, path):
     playlist_url = 'https://music.163.com/playlist?id=' + playlist_id
     html = requests.get(playlist_url).text
     soup = BeautifulSoup(html, 'lxml')
-    playlistname = re.match('(.*?) - 歌单 - 网易云音乐', soup.title.string).group(1)
+    playlistname = re.match(r"(.*?) - 歌单 - 网易云音乐", soup.title.string).group(1)
     path = path + '\\' + playlistname
     playlist = requests.get(api_url, get_playlist_params(playlist_id)).text
     playlist_json = json.loads(playlist)

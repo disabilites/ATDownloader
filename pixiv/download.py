@@ -28,7 +28,7 @@ def download_img_original(illust_id, down_path):
     data = requests.get(img_original, headers=headers).content
     with open(down_path, 'wb') as f:
         f.write(data)
-        print(name + '  下载完成！')
+        print(name + "  下载完成！")
 
 def rank_download(down_path, mode='day', page='1', date=''):
     try:
@@ -38,7 +38,7 @@ def rank_download(down_path, mode='day', page='1', date=''):
         down_path = os.path.join(down_path, mode, rank_time)
         if not os.path.exists(down_path):
             os.makedirs(down_path)
-            print('创建成功！')
+            print("创建成功！")
 
         illusts_len = len(rank_json['illusts'])
         for index in range(0, illusts_len):
@@ -55,9 +55,9 @@ def rank_download(down_path, mode='day', page='1', date=''):
                     data = requests.get(img_original, headers=headers).content
                     with open(os.path.join(down_path, name + picture_format), 'wb') as f:
                         f.write(data)
-                        print(name + '  下载完成！')
+                        print(name + "  下载完成！")
                 else:
-                    print(name + '  已下载！')
+                    print(name + "  已下载！")
             else:
                 for meta_page in range(0, meta_pages):
                     img_original = rank_json['illusts'][index]['meta_pages'][meta_page]['image_urls']['original']
@@ -68,8 +68,8 @@ def rank_download(down_path, mode='day', page='1', date=''):
                             os.makedirs(os.path.join(down_path, name))
                         with open(os.path.join(down_path, name, name + '_' + str(meta_page) + picture_format), 'wb') as f:
                             f.write(data)
-                            print(name + '_' + str(meta_page) + '  下载完成！')
+                            print(name + '_' + str(meta_page) + "  下载完成！")
                     else:
-                        print(name + '_' + str(meta_page) + '  已下载！')
+                        print(name + '_' + str(meta_page) + "  已下载！")
     except Exception:
-        print('本日榜单尚未更新，请稍后再试！')
+        print("本日榜单尚未更新，请稍后再试！")

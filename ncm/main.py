@@ -7,10 +7,10 @@ load_config()
 
 def main():
     parser = argparse.ArgumentParser(description='Welcome to ATDownloader!')
-    parser.add_argument('-s', metavar='song_id', dest='song_id', help='歌曲ID', type=str)
-    parser.add_argument('-ss', metavar='song_ids', dest='song_ids', help='多首歌曲ID', nargs='*', type=str)
-    parser.add_argument('-p', metavar='playlist_id', dest='playlist_id', help='歌单ID', type=str)
-    parser.add_argument('-a', metavar='album_id', dest='album_id', help='专辑ID', type=str)
+    parser.add_argument('-s', metavar='song_id', dest='song_id', help="歌曲ID", type=str)
+    parser.add_argument('-ss', metavar='song_ids', dest='song_ids', help="多首歌曲ID", nargs='*', type=str)
+    parser.add_argument('-p', metavar='playlist_id', dest='playlist_id', help="歌单ID", type=str)
+    parser.add_argument('-a', metavar='album_id', dest='album_id', help="专辑ID", type=str)
     args = parser.parse_args()
     try:
         if args.song_id:
@@ -23,7 +23,7 @@ def main():
         elif args.album_id:
             album_download(args.album_id, path=ALBUM_DOWNLOAD_PATH)
     except Exception:
-        print('ID错误！')
+        print("ID错误！")
 
 if __name__ == '__main__':
     main()

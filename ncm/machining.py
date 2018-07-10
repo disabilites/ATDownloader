@@ -8,16 +8,16 @@ def add_metadata_to_song(file_path, songinfoDict):
     try:
         audio = MP3(file_path, ID3=ID3)
     except HeaderNotFoundError:
-        print('Can\'t sync to MPEG frame, not an validate MP3 file!')
+        print("找不到歌曲文件！")
         return
 
     if audio.tags is None:
-        print('No ID3 tag, trying to add one!')
+        print("没有ID3，尝试添加！")
         try:
             audio.add_tags()
             audio.save()
         except error as e:
-            print('Error occur when add tags:', str(e))
+            print("添加标签时发生错误：", str(e))
             return
 
     id3 = ID3(file_path)

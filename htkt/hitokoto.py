@@ -6,4 +6,7 @@ import json
 def get_hitokoto(cat=None):
     hitokoto = requests.get(api_url, get_params(cat=cat)).text
     hitokoto_json = json.loads(hitokoto)
-    print(hitokoto_json['hitokoto'] + '     —— ' + hitokoto_json['source'])
+    if hitokoto_json['source']:
+        print(hitokoto_json['hitokoto'] + '     —— ' + hitokoto_json['source'])
+    else:
+        print(hitokoto_json['hitokoto'])

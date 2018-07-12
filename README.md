@@ -32,6 +32,8 @@ Finished processing dependencies for ATDownloader==1.0
 
 2018-07-10 增加Pixiv多作品下载
 
+2018-07-12 增加一言（Hitokoto/ヒトコト）功能；增加错误信息输出，修复配置文件bug
+
 ***
 
 ## 网易云音乐
@@ -88,7 +90,7 @@ ncm -a  下载专辑
 ncm -h 查看帮助
 
 ```
-usage: pixiv [-h] [-i illust_id]
+usage: pixiv [-h] [-i illust_id] [-r rank]
 
 Welcome to ATDownloader!
 
@@ -132,3 +134,38 @@ pixiv -r month _ 2018-07-06
 5.排行榜时区为**UTC+9**，每日12：00PM更新，与您所在时区可能会有所偏差
 
 6.参数请按 mode page date顺序填写，并用空格隔开 
+
+***
+
+## 一言（Hitokoto/ヒトコト）
+
+### 相关命令
+
+htkt -h 查看帮助
+
+```
+usage: main.py [-h] [-cat [cat]]
+
+Welcome to ATDownloader!
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -cat [cat]  分类
+```
+
+htkt -cat 分类，默认参数（cat=None）
+>a	Anime - 动画  
+>b	Comic - 漫画  
+>c	Game - 游戏  
+>d	Novel - 小说  
+>e	原创  
+>f	来自网络  
+>g	其他
+
+```
+htkt -cat
+隐约雷鸣，阴霾天空，但盼风雨来，能留你在此。     —— 言叶之庭
+or
+htkt -cat c
+愿风指引着你的道路，愿你的刀刃永远锋利。     —— 魔兽世界
+```

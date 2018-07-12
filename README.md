@@ -30,6 +30,8 @@ Finished processing dependencies for ATDownloader==1.0
 
 2018-07-09 增加网易云音乐下载显示进度条功能；多首歌曲下载；跳过已下载歌曲；修复Pixiv下载bug；榜单未更新时的异常处理
 
+2018-07-10 增加Pixiv多作品下载
+
 ***
 
 ## 网易云音乐
@@ -57,7 +59,7 @@ ncm -s  下载歌曲
 
 ncm -ss 下载多首歌曲
 
-`ncm -ss 557579157 468490592 （多首歌曲ID，中间用空格隔开）`
+`ncm -ss 557579157 468490592 ...（多首歌曲ID，中间用空格隔开）`
 
 ncm -p  下载歌单  
 
@@ -99,6 +101,10 @@ optional arguments:
 ncm -i 下载单个作品
 
 `pixiv -i 69241757`
+
+ncm -is 下载多个作品
+
+`pixiv -is 69520660 69005540 ...（多个作品ID，中间用空格隔开）` 
 
 ncm -r 下载排行榜内容，默认参数（mode=day,page=1,date=''） 
 >mode:榜单（可选：day、week、month）  

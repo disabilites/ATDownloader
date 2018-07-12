@@ -16,14 +16,14 @@ def load_config():
 
     if 'pixiv' not in config.sections():
         init_config_file()
+    else:
+        config.read(CONFIG_FILE_PATH)
 
-    config.read(CONFIG_FILE_PATH)
+        global IMG_DOWNLOAD_PATH
+        global RANK_DOWNLOAD_PATH
 
-    global IMG_DOWNLOAD_PATH
-    global RANK_DOWNLOAD_PATH
-
-    IMG_DOWNLOAD_PATH = config.get('pixiv', 'img_down_path')
-    RANK_DOWNLOAD_PATH = config.get('pixiv', 'rank_down_path')
+        IMG_DOWNLOAD_PATH = config.get('pixiv', 'img_down_path')
+        RANK_DOWNLOAD_PATH = config.get('pixiv', 'rank_down_path')
 
 def init_config_file():
     default_config = '[pixiv]\n' \

@@ -25,8 +25,8 @@ def main():
             if args.rank[2] == '_':
                 args.rank[2] = ''
             rank_download(RANK_DOWNLOAD_PATH, mode=args.rank[0], page=args.rank[1], date=args.rank[2])
-    except Exception:
-        print("发生错误！")
+    except Exception as e:
+        print("发生错误：" + repr(e))
 
 if __name__ == '__main__':
     main()

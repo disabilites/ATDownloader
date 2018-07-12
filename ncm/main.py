@@ -22,8 +22,8 @@ def main():
             playlist_download(args.playlist_id, path=PLAYLIST_DOWNLOAD_PATH)
         elif args.album_id:
             album_download(args.album_id, path=ALBUM_DOWNLOAD_PATH)
-    except Exception:
-        print("ID错误！")
+    except Exception as e:
+        print("发生错误：" + repr(e))
 
 if __name__ == '__main__':
     main()
